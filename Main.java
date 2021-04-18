@@ -12,7 +12,7 @@ public class Main {
     }
 
     private static void printMessage(Dictionary.Operation operation, List<String> output) {
-        System.out.printf("<<<<< %s operation, here is the list:-", operation);
+        System.out.printf("<<<<< %s operation, here is the list:-\n", operation);
         for (String s : output) {
             System.out.printf(" ----> %s\n", s);
         }
@@ -52,10 +52,12 @@ public class Main {
                 System.out.println("=== Input the desired word ===");
                 word = reader.next();
                 printMessage(requestedOperation, dictionary.autoCorrect(word));
+                break;
             case AUTOSUGGEST:
                 System.out.println("=== Input the desired word ===");
                 word = reader.next();
                 printMessage(requestedOperation, dictionary.autoSuggest(word));
+                break;
             default:
                 breakOutOfLoop = true;
                 System.out.println("Thank you for using our dictionary application, exiting . . . . ");

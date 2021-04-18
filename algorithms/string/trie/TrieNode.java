@@ -1,11 +1,16 @@
 package algorithms.string.trie;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import algorithms.string.Pair;
 
 class TrieNode {
 
     private int numPrefixes = 0;
+    private int accessFrequency = 0;
     private boolean isEndOfWord = false;
     Map<Character, TrieNode> children = new HashMap<>();
 
@@ -31,6 +36,9 @@ class TrieNode {
 
     boolean search(String word, int index) {
         if (index == word.length()) {
+            if(isEndOfWord){
+                accessFrequency++;
+            }
             return isEndOfWord;
         }
         if (children.get(word.charAt(index)) == null) {
@@ -59,5 +67,27 @@ class TrieNode {
             return true;
         }
         return false;
+    }
+
+    TrieNode getPrefixNode(String word, int index) {
+        if(word.length() == index) {
+            return this;
+        }
+        if (children.get(word.charAt(index)) == null) {
+            return null;
+        }
+        return children.get(word.charAt(index)).getPrefixNode(word, index + 1);
+    }
+
+    List<Pair> getAllDescendentWords(String word) {
+        List<Pair> descendents = new ArrayList<>();
+        if (isEndOfWord) {
+            descendents.add(new Pair(word, accessFrequency));
+        }
+        for(char c : children.keySet()) {
+            String newPrefix = word + c;
+            descendents.addAll(children.get(c).getAllDescendentWords(newPrefix));
+        }
+        return descendents;
     }
 }
