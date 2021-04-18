@@ -29,8 +29,4 @@ public class Dictionary {
     public boolean delete(String word) {
         return helper.delete(word);
     }
-
-    public void printMessage(Operation operation, boolean isSuccess) {
-        System.out.printf("<<<<< %s operation, success = %s >>>>>\n", operation, isSuccess);
-    }
 }

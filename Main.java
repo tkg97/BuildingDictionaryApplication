@@ -5,6 +5,10 @@ import dictionary.helper.DictionaryHelper;
 import dictionary.helper.trie.TrieDictionaryHelper;
 
 public class Main {
+
+    private static void printMessage(Dictionary.Operation operation, boolean isSuccess) {
+        System.out.printf("<<<<< %s operation, success = %s >>>>>\n", operation, isSuccess);
+    }
     public static void main(String[] args) {
         DictionaryHelper dictionaryHelper = new TrieDictionaryHelper();
         Dictionary dictionary = new Dictionary(dictionaryHelper);
@@ -22,17 +26,17 @@ public class Main {
             case INSERT:
                 System.out.println("=== Input the desired word ===");
                 word = reader.next();
-                dictionary.printMessage(requestedOperation, dictionary.insert(word));
+                printMessage(requestedOperation, dictionary.insert(word));
                 break;
             case SEARCH:
                 System.out.println("=== Input the desired word ===");
                 word = reader.next();
-                dictionary.printMessage(requestedOperation, dictionary.search(word));
+                printMessage(requestedOperation, dictionary.search(word));
                 break;
             case DELETE:
                 System.out.println("=== Input the desired word ===");
                 word = reader.next();
-                dictionary.printMessage(requestedOperation, dictionary.delete(word));
+                printMessage(requestedOperation, dictionary.delete(word));
                 break;
             case EXIT:
                 breakOutOfLoop = true;
