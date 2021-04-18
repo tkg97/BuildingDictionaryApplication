@@ -1,7 +1,7 @@
-package dictionary.search;
+package dictionary.helper.trie;
 
-import dictionary.DictionaryHelper;
-import dictionary.search.Trie.Trie;
+import dictionary.helper.DictionaryHelper;
+import algorithms.string.trie.Trie;
 
 public class TrieDictionaryHelper implements DictionaryHelper {
     

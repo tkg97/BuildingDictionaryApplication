@@ -1,4 +1,4 @@
-package dictionary.search.Trie;
+package algorithms.string.trie;
 
 import java.util.HashMap;
 import java.util.Map;

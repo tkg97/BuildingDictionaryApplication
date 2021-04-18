@@ -1,4 +1,4 @@
-package dictionary;
+package dictionary.helper;
 
 public interface DictionaryHelper {
     public boolean insert(String word);
