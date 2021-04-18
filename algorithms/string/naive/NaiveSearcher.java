@@ -1,23 +1,26 @@
-package algorithms.string.trie;
+package algorithms.string.naive;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import algorithms.string.SearchDAOInterface;
 
-public class Trie implements SearchDAOInterface {
-    private TrieNode root = new TrieNode();
-    private int startIndex = 0;
+// Uses a simple Hash set to maintain the data
+public class NaiveSearcher implements SearchDAOInterface {
+
+    Set<String> dictionarySet = new HashSet<>();
 
     public boolean insert(String word) {
-        return root.insert(word, startIndex);
+        return dictionarySet.add(word);
     }
 
     public boolean search(String word) {
-        return root.search(word, startIndex);
+        return dictionarySet.contains(word);
     }
 
     public boolean delete(String word) {
-        return root.delete(word, startIndex);
+        return dictionarySet.remove(word);
     }
 
     public List<String> autoSuggest(String prefix) {

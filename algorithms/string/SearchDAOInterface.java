@@ -1,8 +1,9 @@
-package dictionary.helper;
+package algorithms.string;
 
 import java.util.List;
 
-public interface DictionaryHelper {
+public interface SearchDAOInterface {
+
     public boolean insert(String word);
 
     public boolean search(String word);

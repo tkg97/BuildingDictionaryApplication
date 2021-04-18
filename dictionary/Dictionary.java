@@ -1,5 +1,7 @@
 package dictionary;
 
+import java.util.List;
+
 import dictionary.helper.DictionaryHelper;
 
 public class Dictionary {
@@ -7,7 +9,7 @@ public class Dictionary {
     private DictionaryHelper helper;
 
     public static enum Operation {
-        INSERT, SEARCH, DELETE, EXIT;
+        INSERT, SEARCH, DELETE, AUTOSUGGEST, AUTOCORRECT;
 
         public static Operation parse(String str) {
             return valueOf(str.toUpperCase());
@@ -28,5 +30,13 @@ public class Dictionary {
 
     public boolean delete(String word) {
         return helper.delete(word);
+    }
+
+    public List<String> autoSuggest(String prefix) {
+        return helper.autoSuggest(prefix);
+    }
+
+    public List<String> autoCorrect(String word) {
+        return helper.autoCorrect(word);
     }
 }

@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 import dictionary.Dictionary;
@@ -9,6 +10,14 @@ public class Main {
     private static void printMessage(Dictionary.Operation operation, boolean isSuccess) {
         System.out.printf("<<<<< %s operation, success = %s >>>>>\n", operation, isSuccess);
     }
+
+    private static void printMessage(Dictionary.Operation operation, List<String> output) {
+        System.out.printf("<<<<< %s operation, here is the list:-", operation);
+        for (String s : output) {
+            System.out.printf(" ----> %s\n", s);
+        }
+    }
+
     public static void main(String[] args) {
         DictionaryHelper dictionaryHelper = new TrieDictionaryHelper();
         Dictionary dictionary = new Dictionary(dictionaryHelper);
@@ -18,6 +27,7 @@ public class Main {
         for (Dictionary.Operation operation : Dictionary.Operation.values()) {
             System.out.println(operation);
         }
+        System.out.println("Input exit, when you want to terminate the program");
         while (!breakOutOfLoop) {
             System.out.println("===== Input the operation you want to perform! =====");
             Dictionary.Operation requestedOperation = Dictionary.Operation.parse(reader.next());
@@ -38,7 +48,15 @@ public class Main {
                 word = reader.next();
                 printMessage(requestedOperation, dictionary.delete(word));
                 break;
-            case EXIT:
+            case AUTOCORRECT:
+                System.out.println("=== Input the desired word ===");
+                word = reader.next();
+                printMessage(requestedOperation, dictionary.autoCorrect(word));
+            case AUTOSUGGEST:
+                System.out.println("=== Input the desired word ===");
+                word = reader.next();
+                printMessage(requestedOperation, dictionary.autoSuggest(word));
+            default:
                 breakOutOfLoop = true;
                 System.out.println("Thank you for using our dictionary application, exiting . . . . ");
                 break;
