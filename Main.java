@@ -30,38 +30,39 @@ public class Main {
         System.out.println("Input exit, when you want to terminate the program");
         while (!breakOutOfLoop) {
             System.out.println("===== Input the operation you want to perform! =====");
-            Dictionary.Operation requestedOperation = Dictionary.Operation.parse(reader.next());
-            String word = "";
-            switch (requestedOperation) {
-            case INSERT:
-                System.out.println("=== Input the desired word ===");
-                word = reader.next();
-                printMessage(requestedOperation, dictionary.insert(word));
-                break;
-            case SEARCH:
-                System.out.println("=== Input the desired word ===");
-                word = reader.next();
-                printMessage(requestedOperation, dictionary.search(word));
-                break;
-            case DELETE:
-                System.out.println("=== Input the desired word ===");
-                word = reader.next();
-                printMessage(requestedOperation, dictionary.delete(word));
-                break;
-            case AUTOCORRECT:
-                System.out.println("=== Input the desired word ===");
-                word = reader.next();
-                printMessage(requestedOperation, dictionary.autoCorrect(word));
-                break;
-            case AUTOSUGGEST:
-                System.out.println("=== Input the desired word ===");
-                word = reader.next();
-                printMessage(requestedOperation, dictionary.autoSuggest(word));
-                break;
-            default:
+            try{
+                Dictionary.Operation requestedOperation = Dictionary.Operation.parse(reader.next());
+                String word = "";
+                switch (requestedOperation) {
+                case INSERT:
+                    System.out.println("=== Input the desired word ===");
+                    word = reader.next();
+                    printMessage(requestedOperation, dictionary.insert(word));
+                    break;
+                case SEARCH:
+                    System.out.println("=== Input the desired word ===");
+                    word = reader.next();
+                    printMessage(requestedOperation, dictionary.search(word));
+                    break;
+                case DELETE:
+                    System.out.println("=== Input the desired word ===");
+                    word = reader.next();
+                    printMessage(requestedOperation, dictionary.delete(word));
+                    break;
+                case AUTOCORRECT:
+                    System.out.println("=== Input the desired word ===");
+                    word = reader.next();
+                    printMessage(requestedOperation, dictionary.autoCorrect(word));
+                    break;
+                case AUTOSUGGEST:
+                    System.out.println("=== Input the desired word ===");
+                    word = reader.next();
+                    printMessage(requestedOperation, dictionary.autoSuggest(word));
+                    break;           
+                }
+            } catch (IllegalArgumentException exception) {
                 breakOutOfLoop = true;
                 System.out.println("Thank you for using our dictionary application, exiting . . . . ");
-                break;
             }
         }
         reader.close();
